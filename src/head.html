@@ -1,0 +1,230 @@
+<title>BAL SANDYQ Меню</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Manrope:wght@400;500;700&family=Lora:ital,wght@1,500&display=swap">
+<style>
+/* Layout: оранжевая шапка с огромным вордмарком → витрина фото 2/3 колонки → три сэта → «ещё в меню» строкой → контакты; на телефоне плавающая кнопка «Заказать» */
+:root{
+  --orange:#DD5F08; --terra:#CD662B; --cream:#F3E3D0;
+  --bg:#FFFFFF; --soft:#FBF3EA; --fg:#24160D; --muted:#8A6A55; --line:#EFE2D4; --on:#FFFFFF;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-serif:"Lora",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17100B;--soft:#22170F;--fg:#F7EBDF;--muted:#C4A690;--line:#33241A;--orange:#E66A12;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17100B;--soft:#22170F;--fg:#F7EBDF;--muted:#C4A690;--line:#33241A;--orange:#E66A12;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--orange)}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+
+/* Шапка */
+.hero{background:var(--orange);color:var(--on);overflow:hidden}
+.hero .wrap{padding-block:28px 0;display:grid;gap:28px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px}
+.top a{text-decoration:none;font-weight:700;border:1.5px solid rgba(255,255,255,.7);padding:8px 14px;border-radius:999px;white-space:nowrap}
+.top a:hover{background:var(--on);color:var(--orange)}
+.city{opacity:.9}
+.mark{font:800 clamp(44px,13vw,128px)/.9 var(--f-display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.sub{font:500 italic clamp(15px,3.6vw,20px)/1 var(--f-serif);letter-spacing:.3em;margin:10px 0 0}
+.hero-row{display:grid;gap:24px;align-items:end}
+.hero-copy{display:grid;gap:18px;padding-bottom:28px;min-width:0}
+.hero-copy p{margin:0;font-size:clamp(17px,2.4vw,20px);max-width:28ch;text-wrap:balance}
+.cta{justify-self:start;display:inline-flex;align-items:center;gap:10px;background:var(--on);color:#24160D;text-decoration:none;font:700 15px/1 var(--f-body);padding:15px 22px;border-radius:999px}
+.cta:hover{transform:translateY(-1px)}
+.hero-photo{margin:0;justify-self:center;width:min(100%,380px);background:#fff;padding:8px 8px 0;border-radius:10px 10px 0 0}
+.hero-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px 6px 0 0}
+@media (min-width:760px){.hero-row{grid-template-columns:1fr 380px}}
+
+/* Секции */
+main{display:grid;gap:72px;padding-block:56px 96px}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+h2{font:800 clamp(26px,6vw,40px)/1 var(--f-display);margin:0;letter-spacing:-.01em}
+.hint{color:var(--muted);font-size:14px;margin:0}
+
+/* Витрина */
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px}
+@media (min-width:760px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 22px}}
+.card{display:grid;gap:10px;min-width:0;cursor:zoom-in;background:none;border:0;padding:0;text-align:left;color:inherit;font:inherit}
+.ph{background:#fff;border-radius:10px;overflow:hidden;aspect-ratio:4/5;max-width:100%;border:1px solid var(--line)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover .ph img{transform:scale(1.04)}
+.c-name{font:700 16px/1.25 var(--f-body);margin:0}
+.c-line{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.c-desc{color:var(--muted);font-size:13.5px;margin:0}
+.c-price{font:500 15px/1 var(--f-display);color:var(--orange);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* Сэты */
+.sets{display:grid;gap:14px}
+@media (min-width:760px){.sets{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.set{background:var(--soft);border-radius:14px;padding:22px;display:grid;gap:14px;align-content:start;min-width:0}
+.set.hot{background:var(--orange);color:var(--on)}
+.set .ppl{font:800 clamp(30px,7vw,40px)/1 var(--f-display);margin:0}
+.set .ppl small{display:block;font:500 13px/1.4 var(--f-body);opacity:.8;margin-top:6px;letter-spacing:0}
+.set ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.set li{font-size:13px;padding:6px 10px;border-radius:999px;background:var(--bg);color:var(--fg)}
+.set.hot li{background:rgba(255,255,255,.18);color:var(--on)}
+.set .price{font:800 26px/1 var(--f-display);font-variant-numeric:tabular-nums;margin-top:4px}
+.badge{justify-self:start;font:700 11px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;background:var(--on);color:var(--orange);padding:6px 9px;border-radius:999px}
+
+/* Ещё в меню */
+.more{display:grid;gap:22px}
+@media (min-width:760px){.more{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 40px}}
+.grp{border-top:2px solid var(--fg);padding-top:12px;min-width:0}
+.grp h3{font:500 13px/1 var(--f-display);text-transform:uppercase;letter-spacing:.1em;margin:0 0 10px;color:var(--orange)}
+.grp p{margin:0;font-size:17px;line-height:1.6}
+.grp p span:not(:last-child)::after{content:"  ·  ";color:var(--orange);white-space:pre}
+
+/* Контакты */
+.contact{background:var(--fg);color:var(--bg)}
+.contact .wrap{padding-block:56px 120px;display:grid;gap:28px}
+.contact h2{color:var(--bg)}
+.big{font:800 clamp(26px,7vw,48px)/1.05 var(--f-display);margin:0;user-select:all;overflow-wrap:anywhere}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.btn{border:1.5px solid currentColor;background:transparent;color:inherit;font:700 14px/1 var(--f-body);padding:12px 18px;border-radius:999px;cursor:pointer;text-decoration:none}
+.btn.fill{background:var(--orange);border-color:var(--orange);color:#fff}
+.addr{opacity:.7;margin:0;font-size:14px}
+
+/* Бегущая строка */
+.ticker{background:var(--fg);color:var(--bg);overflow:hidden;white-space:nowrap;border-block:1px solid var(--fg)}
+.ticker-in{display:inline-flex;gap:28px;padding-block:13px;font:500 14px/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;animation:run 32s linear infinite}
+.ticker-in b{color:var(--orange);font-weight:500}
+@keyframes run{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker-in{animation:none}}
+
+/* Instagram */
+.insta{display:grid;gap:22px;background:var(--orange);color:#fff;border-radius:18px;padding:24px;overflow:hidden}
+@media (min-width:760px){.insta{grid-template-columns:1fr 1.1fr;align-items:center;padding:36px}}
+.insta h2{color:#fff}
+.insta p{margin:0;font-size:16px;opacity:.95;max-width:34ch}
+.handle{font:800 clamp(20px,4.6vw,30px)/1.1 var(--f-display);overflow-wrap:anywhere}
+.insta .btn{justify-self:start;border-color:#fff;color:#fff}
+.insta .btn:hover{background:#fff;color:var(--orange)}
+.feed{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.feed img{width:100%;aspect-ratio:1;object-fit:cover;display:block;border-radius:6px;background:#fff}
+
+/* Контакты-карточки */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.cc{border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px;display:grid;gap:6px;text-decoration:none;color:inherit;min-width:0}
+a.cc:hover{border-color:var(--orange)}
+.cc span{font:500 11px/1 var(--f-display);letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+.cc strong{font:700 17px/1.3 var(--f-body);overflow-wrap:anywhere}
+.cc.dir{background:var(--orange);border-color:var(--orange);color:#fff}.cc.dir span{opacity:.85}.cc.dir em{color:#fff;opacity:.9}
+.cc em{font-style:normal;font-size:13px;color:var(--orange)}
+
+/* Жизнь */
+.live{display:inline-flex;align-items:center;gap:8px;font-weight:700}
+.live i{width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 0 0 rgba(255,255,255,.7);animation:ping 1.8s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+.ln{display:block;overflow:hidden;padding-bottom:.04em}
+.ln>span{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.ln:nth-child(2)>span{animation-delay:.12s}
+@keyframes rise{from{transform:translateY(105%)}}
+.sub,.hero-copy{animation:fadeup .8s .35s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fadeup{from{opacity:0;transform:translateY(14px)}}
+.hero-photo{position:relative;animation:drop 1s .25s cubic-bezier(.2,.8,.2,1) both}
+@keyframes drop{from{opacity:0;transform:translateY(60px) rotate(4deg)}}
+.slides{position:relative;aspect-ratio:4/5;border-radius:6px 6px 0 0;overflow:hidden;background:#fff}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .9s ease,transform 4s ease}
+.slides img.on{opacity:1;transform:scale(1)}
+.hero-photo figcaption{position:absolute;left:18px;bottom:16px;background:rgba(36,22,13,.82);color:#fff;font:700 13px/1 var(--f-body);padding:9px 12px;border-radius:999px;transition:opacity .3s}
+.seal{position:absolute;width:104px;height:104px;top:-34px;left:-22px;animation:spin 18s linear infinite;filter:drop-shadow(0 8px 14px rgba(80,25,0,.35))}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cta span{display:inline-block;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(3px)}}
+.card .ph{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.card:hover .ph{transform:translateY(-6px) rotate(-1deg);box-shadow:0 18px 30px -16px rgba(120,45,0,.45)}
+.card:active .ph{transform:scale(.97)}
+.set{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.set:hover{transform:translateY(-6px)}
+.feed img{transition:transform .4s}
+.feed img:hover{transform:scale(1.06) rotate(-2deg)}
+@supports (animation-timeline: view()){
+  .card,.set,.grp,.insta,.cc{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
+  @keyframes reveal{from{opacity:.15;transform:translateY(40px) scale(.97)}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .slides img{opacity:0}.slides img.on{opacity:1}
+}
+
+/* Плавающая кнопка */
+.float{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:6;background:var(--orange);color:#fff;text-decoration:none;font:700 15px/1 var(--f-body);padding:16px 26px;border-radius:999px;box-shadow:0 12px 30px -10px rgba(120,40,0,.6);transition:opacity .25s}
+.float.off{opacity:0;pointer-events:none}
+@media (min-width:760px){.float{display:none}}
+
+dialog{border:0;padding:10px;border-radius:12px;background:#fff;color:#24160D;max-width:min(92vw,440px);width:100%}
+dialog::backdrop{background:rgba(23,16,11,.78)}
+dialog img{display:block;width:100%;border-radius:6px}
+dialog p{margin:12px 6px 4px;font:700 16px/1.3 var(--f-body)}
+dialog small{display:block;margin:0 6px 6px;color:#8A6A55;font-size:14px}
+dialog button{position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.94);font-size:22px;cursor:pointer;color:#24160D}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="top"><span class="live"><i></i>Принимаем заказы · Астана</span><a href="#order">Заказать</a></div>
+    <div>
+      <h1 class="mark"><span class="ln"><span>BAL</span></span><span class="ln"><span>SANDYQ</span></span></h1>
+      <p class="sub">кондитерлік шеберхана</p>
+    </div>
+    <div class="hero-row">
+      <div class="hero-copy">
+        <p>Домашние десерты из нашего цеха. На праздник, в офис и к чаю.</p>
+        <a class="cta" href="#menu">Смотреть меню <span>↓</span></a>
+      </div>
+      <figure class="hero-photo">
+        <div class="slides" id="slides"><img class="on" id="heroImg" alt="Стол с десертами BAL SANDYQ"></div>
+        <figcaption id="slideCap">Дастархан BAL SANDYQ</figcaption>
+        <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="circ" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+          <circle cx="60" cy="60" r="58" fill="#F3E3D0"/>
+          <text font-family="Unbounded,Arial Black,sans-serif" font-size="11.5" font-weight="500" letter-spacing="2.6" fill="#DD5F08"><textPath href="#circ">BAL SANDYQ ✦ КОНДИТЕРЛІК ШЕБЕРХАНА ✦</textPath></text>
+          <g transform="translate(60 62)" fill="none" stroke="#DD5F08" stroke-width="3" stroke-linecap="round"><path d="M0 10C0 -2 -9 -8 -16 -5C-22 -2 -21 6 -15 6C-11 6 -10 1 -13 0"/><path d="M0 10C0 -2 9 -8 16 -5C22 -2 21 6 15 6C11 6 10 1 13 0"/></g>
+        </svg>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-in" id="ticker"></div></div>
+
+<main class="wrap">
+  <section id="menu"><div class="head"><h2>Десерты</h2><p class="hint">Нажмите на фото, чтобы увеличить</p></div><div class="grid" id="grid"></div></section>
+  <section id="sets"><div class="head"><h2>Сэты</h2><p class="hint">Ассорти в фирменной коробке</p></div><div class="sets" id="setsBox"></div></section>
+  <section id="insta" class="insta">
+    <div style="display:grid;gap:14px">
+      <h2>Мы в Instagram</h2>
+      <span class="handle">@balsandyq_astana</span>
+      <p>Новинки, закулисье цеха и свободные даты для заказов — сначала там.</p>
+      <a class="btn" href="https://instagram.com/balsandyq_astana" target="_blank" rel="noopener">Открыть Instagram →</a>
+    </div>
+    <div class="feed" id="feed"></div>
+  </section>
+  <section id="more"><div class="head"><h2>Ещё в меню</h2><p class="hint">Фото скоро добавим</p></div><div class="more" id="moreBox"></div></section>
+</main>
+
+<footer class="contact" id="order">
+  <div class="wrap">
+    <h2>Заказать</h2>
+    <p class="big" id="phone">8 706 682 08 28</p>
+    <div class="links">
+      <button class="btn fill" type="button" id="copyPhone">Скопировать номер</button>
+      <a class="btn" href="https://wa.me/77066820828" target="_blank" rel="noopener">Написать в WhatsApp</a>
+    </div>
+    <div class="cgrid">
+      <div class="cc dir"><span>Директор</span><strong>Базарбай Алтынай</strong><em>8 706 682 08 28 · заказы и сотрудничество</em></div>
+      <a class="cc" href="https://instagram.com/balsandyq_astana" target="_blank" rel="noopener"><span>Instagram</span><strong>@balsandyq_astana</strong><em>Открыть →</em></a>
+      <a class="cc" href="https://www.threads.net/@balsandyq_astana" target="_blank" rel="noopener"><span>Threads</span><strong>@balsandyq_astana</strong><em>Открыть →</em></a>
+      <a class="cc" href="https://wa.me/77066820828" target="_blank" rel="noopener"><span>WhatsApp</span><strong>+7 706 682 08 28</strong><em>Написать →</em></a>
+      <a class="cc" href="https://2gis.kz/astana/search/%D0%95%20669%2C%2013" target="_blank" rel="noopener"><span>Адрес цеха</span><strong>Астана, ул. Е 669, д. 13, НП 2</strong><em>Открыть в 2ГИС →</em></a>
+    </div>
+    <p class="addr">Доставка по Астане и корпоративные заказы · Цены уточняйте при заказе</p>
+  </div>
+</footer>
+
+<a class="float" id="float" href="#order">Заказать</a>
+<dialog id="zoom"><button type="button" id="zoomClose" aria-label="Закрыть">×</button><img id="zoomImg" alt=""><p id="zoomName"></p><small id="zoomDesc"></small></dialog>
