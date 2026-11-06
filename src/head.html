@@ -67,6 +67,14 @@ h2{font:800 clamp(26px,6vw,40px)/1 var(--f-display);margin:0;letter-spacing:-.01
 .set ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .set li{font-size:13px;padding:6px 10px;border-radius:999px;background:var(--bg);color:var(--fg)}
 .set.hot li{background:rgba(255,255,255,.18);color:var(--on)}
+.set ul.mix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 8px}
+.set ul.mix li{display:grid;gap:3px;padding:0;background:none;border-radius:0;font-size:12px;line-height:1.25;min-width:0;color:inherit}
+.set.hot ul.mix li{background:none;color:#fff}
+.mix img{width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 42%;border-radius:10px;background:#fff;display:block;transition:transform .3s}
+.set:hover .mix img{transform:scale(1.03)}
+.mix b{font-weight:700;overflow-wrap:anywhere}
+.mix small{opacity:.7}
+@media (min-width:760px){.set ul.mix{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .set .price{font:800 26px/1 var(--f-display);font-variant-numeric:tabular-nums;margin-top:4px}
 .badge{justify-self:start;font:700 11px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;background:var(--on);color:var(--orange);padding:6px 9px;border-radius:999px}
 

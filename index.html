@@ -75,6 +75,14 @@ h2{font:800 clamp(26px,6vw,40px)/1 var(--f-display);margin:0;letter-spacing:-.01
 .set ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .set li{font-size:13px;padding:6px 10px;border-radius:999px;background:var(--bg);color:var(--fg)}
 .set.hot li{background:rgba(255,255,255,.18);color:var(--on)}
+.set ul.mix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 8px}
+.set ul.mix li{display:grid;gap:3px;padding:0;background:none;border-radius:0;font-size:12px;line-height:1.25;min-width:0;color:inherit}
+.set.hot ul.mix li{background:none;color:#fff}
+.mix img{width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 42%;border-radius:10px;background:#fff;display:block;transition:transform .3s}
+.set:hover .mix img{transform:scale(1.03)}
+.mix b{font-weight:700;overflow-wrap:anywhere}
+.mix small{opacity:.7}
+@media (min-width:760px){.set ul.mix{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .set .price{font:800 26px/1 var(--f-display);font-variant-numeric:tabular-nums;margin-top:4px}
 .badge{justify-self:start;font:700 11px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;background:var(--on);color:var(--orange);padding:6px 9px;border-radius:999px}
 
@@ -256,9 +264,9 @@ const SHOW = [
   {n:"Шоколадное печенье", d:"Мягкое, с тёмным шоколадом", p:null, img:"cook"}
 ];
 const SETS = [
-  {ppl:"8–10", note:"человек", items:["Трубочки 10","Крембель 20","Профитроли 10","Павлова 8"]},
-  {ppl:"10–12", note:"человек · с тортом", hot:true, items:["Трубочки","Крембель","Профитроли","Павлова 6","Розетки","Баноффи 6","Творожный тарт 6","Торт клубника-ваниль"]},
-  {ppl:"15–20", note:"человек", items:["Трубочки 1 кг","Крембель 1 кг","Профитроли 1 кг","Павлова 12","Розетки 1 кг","Баноффи 12","Творожный тарт 12"]}
+  {ppl:"8–10", note:"человек", items:[["Трубочки","10 шт","trub"],["Крембель","20 шт","kreb"],["Профитроли","10 шт","prof"],["Мини Павлова","8 шт","pav"]]},
+  {ppl:"10–12", note:"человек · с тортом", hot:true, items:[["Торт клубника-ваниль","1 шт","kv"],["Трубочки","500 г","trub"],["Крембель","500 г","kreb"],["Профитроли","500 г","prof"],["Мини Павлова","6 шт","pav"],["Розетки","500 г","roz"],["Баноффи","6 шт","banm"],["Творожный тарт","6 шт","tart"]]},
+  {ppl:"15–20", note:"человек", items:[["Трубочки","1 кг","trub"],["Крембель","1 кг","kreb"],["Профитроли","1 кг","prof"],["Мини Павлова","12 шт","pav"],["Розетки","1 кг","roz"],["Баноффи","12 шт","banm"],["Творожный тарт","12 шт","tart"]]}
 ];
 const MORE = [
   ["Торты", ["Медовый","«Милка»","«Карамельная девочка»","Шоколадно-банановый"]],
@@ -301,7 +309,7 @@ document.getElementById("setsBox").innerHTML = SETS.map(s => `
   <article class="set${s.hot?" hot":""}">
     ${s.hot?`<span class="badge">Самый полный</span>`:""}
     <p class="ppl">${s.ppl}<small>${esc(s.note)}</small></p>
-    <ul>${s.items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+    <ul class="mix">${s.items.map(([n,q,k])=>`<li><img src="${PHOTOS[k]}" alt="" loading="lazy"><b>${esc(n)}</b><small>${esc(q)}</small></li>`).join("")}</ul>
   </article>`).join("");
 
 document.getElementById("moreBox").innerHTML = MORE.map(([h,xs]) => `
