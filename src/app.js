@@ -11,9 +11,9 @@ const SHOW = [
   {n:"Шоколадное печенье", d:"Мягкое, с тёмным шоколадом", p:null, img:"cook"}
 ];
 const SETS = [
-  {ppl:"8–10", note:"человек", items:[["Трубочки","10 шт","trub"],["Крембель","20 шт","kreb"],["Профитроли","10 шт","prof"],["Мини Павлова","8 шт","pav"]]},
-  {ppl:"10–12", note:"человек · с тортом", hot:true, items:[["Торт клубника-ваниль","1 шт","kv"],["Трубочки","500 г","trub"],["Крембель","500 г","kreb"],["Профитроли","500 г","prof"],["Мини Павлова","6 шт","pav"],["Розетки","500 г","roz"],["Баноффи","6 шт","banm"],["Творожный тарт","6 шт","tart"]]},
-  {ppl:"15–20", note:"человек", items:[["Трубочки","1 кг","trub"],["Крембель","1 кг","kreb"],["Профитроли","1 кг","prof"],["Мини Павлова","12 шт","pav"],["Розетки","1 кг","roz"],["Баноффи","12 шт","banm"],["Творожный тарт","12 шт","tart"]]}
+  {ppl:"8–10", note:"человек", img:"set8", items:[["Трубочки","10 шт","trub"],["Крембель","20 шт","kreb"],["Профитроли","10 шт","prof"],["Мини Павлова","8 шт","pav"]]},
+  {ppl:"10–12", note:"человек · с тортом", hot:true, img:"set10", items:[["Торт клубника-ваниль","1 шт","kv"],["Трубочки","500 г","trub"],["Крембель","500 г","kreb"],["Профитроли","500 г","prof"],["Мини Павлова","6 шт","pav"],["Розетки","500 г","roz"],["Баноффи","6 шт","banm"],["Творожный тарт","6 шт","tart"]]},
+  {ppl:"15–20", note:"человек", img:"set15", items:[["Трубочки","1 кг","trub"],["Крембель","1 кг","kreb"],["Профитроли","1 кг","prof"],["Мини Павлова","12 шт","pav"],["Розетки","1 кг","roz"],["Баноффи","12 шт","banm"],["Творожный тарт","12 шт","tart"]]}
 ];
 const MORE = [
   ["Торты", ["Медовый","«Милка»","«Карамельная девочка»","Шоколадно-банановый"]],
@@ -54,9 +54,9 @@ document.getElementById("grid").innerHTML = SHOW.map((i,k) => `
 
 document.getElementById("setsBox").innerHTML = SETS.map(s => `
   <article class="set${s.hot?" hot":""}">
-    ${s.hot?`<span class="badge">Самый полный</span>`:""}
+    <button class="set-ph" type="button" data-set="${s.img}" data-cap="Сэт на ${s.ppl} ${esc(s.note)}" aria-label="Сэт на ${s.ppl} человек — увеличить фото"><img src="${PHOTOS[s.img]}" alt="Десерты сэта на ${s.ppl} человек на столе" loading="lazy">${s.hot?`<span class="badge">Самый полный</span>`:""}</button>
     <p class="ppl">${s.ppl}<small>${esc(s.note)}</small></p>
-    <ul class="mix">${s.items.map(([n,q,k])=>`<li><img src="${PHOTOS[k]}" alt="" loading="lazy"><b>${esc(n)}</b><small>${esc(q)}</small></li>`).join("")}</ul>
+    <ul>${s.items.map(([n,q])=>`<li>${esc(n)} <small>${esc(q)}</small></li>`).join("")}</ul>
   </article>`).join("");
 
 document.getElementById("moreBox").innerHTML = MORE.map(([h,xs]) => `
@@ -70,6 +70,14 @@ document.getElementById("grid").addEventListener("click", e => {
   document.getElementById("zoomImg").alt = i.n;
   document.getElementById("zoomName").textContent = i.n + (i.p ? " — " + fmt(i.p) : "");
   document.getElementById("zoomDesc").textContent = i.d;
+  try { zoom.showModal(); } catch { zoom.setAttribute("open",""); }
+});
+document.getElementById("setsBox").addEventListener("click", e => {
+  const b = e.target.closest(".set-ph"); if (!b) return;
+  document.getElementById("zoomImg").src = PHOTOS[b.dataset.set];
+  document.getElementById("zoomImg").alt = b.dataset.cap;
+  document.getElementById("zoomName").textContent = b.dataset.cap;
+  document.getElementById("zoomDesc").textContent = "Всё, что входит в сэт";
   try { zoom.showModal(); } catch { zoom.setAttribute("open",""); }
 });
 document.getElementById("zoomClose").addEventListener("click", () => zoom.close());
