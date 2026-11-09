@@ -19,14 +19,13 @@
 <style>
 /* Layout: оранжевая шапка с огромным вордмарком → витрина фото 2/3 колонки → три сэта → «ещё в меню» строкой → контакты; на телефоне плавающая кнопка «Заказать» */
 :root{
+  color-scheme:light;
   --orange:#DD5F08; --terra:#CD662B; --cream:#F3E3D0;
-  --bg:#FFFFFF; --soft:#FBF3EA; --fg:#24160D; --muted:#8A6A55; --line:#EFE2D4; --on:#FFFFFF;
+  --bg:#FFF8F0; --soft:#F6E8D8; --fg:#24160D; --muted:#8A6A55; --line:#EFE2D4; --on:#FFFFFF;
   --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
   --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-serif:"Lora",Georgia,serif;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17100B;--soft:#22170F;--fg:#F7EBDF;--muted:#C4A690;--line:#33241A;--orange:#E66A12;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#17100B;--soft:#22170F;--fg:#F7EBDF;--muted:#C4A690;--line:#33241A;--orange:#E66A12;color-scheme:dark}
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font:400 16px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
