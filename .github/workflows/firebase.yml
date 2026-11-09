@@ -1,0 +1,23 @@
+# Публикует сайт на https://balsandyq.web.app при каждом push в main.
+# Нужен секрет репозитория FIREBASE_SERVICE_ACCOUNT (JSON ключа сервисного аккаунта Firebase).
+name: Deploy to Firebase Hosting
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HAS_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - if: env.HAS_KEY != 'true'
+        run: echo "Секрет FIREBASE_SERVICE_ACCOUNT ещё не добавлен — пропускаю публикацию."
+      - if: env.HAS_KEY == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: balsandyq
