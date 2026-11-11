@@ -1,6 +1,6 @@
 # Как обновлять сайт BAL SANDYQ
 
-Сайт: https://kakenoverkebulan-dev.github.io/balsandyq/ (GitHub Pages, ветка main, файл index.html).
+Сайт: https://balsandyq.vercel.app/ (Vercel, автопубликация из ветки main, файл index.html). Запасной адрес: https://kakenoverkebulan-dev.github.io/balsandyq/ (GitHub Pages).
 Не редактируйте index.html руками — правьте файлы в `src/` и запускайте `python3 build.py`.
 
 ## Источники
@@ -20,4 +20,4 @@
 2. Определите десерт на новой странице. Если сомневаетесь, какой это десерт, — не добавляйте.
 3. Сожмите в JPEG (quality≈84) и добавьте `"ключ": "data:image/jpeg;base64,..."` в `src/photos.json`; номер страницы — в `src/canva-pages.json`.
 4. Перенесите позицию из `MORE` в `SHOW` с `img:"ключ"` и короткой строкой описания (3–6 слов).
-5. `python3 build.py`, коммит, push в main. Pages обновится за 1–2 минуты.
+5. `python3 build.py`, коммит, push в main. Vercel и Pages обновятся за 1–2 минуты.
