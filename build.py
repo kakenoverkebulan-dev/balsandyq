@@ -14,7 +14,7 @@ out = (
  '<meta property="og:type" content="website">\n'
  '<meta property="og:url" content="https://balsandyq.vercel.app/">\n'
  '<meta property="og:locale" content="ru_RU">\n'
- '<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Bakery", "name": "BAL SANDYQ", "alternateName": "BAL SANDYQ — кондитерлік шеберхана", "url": "https://balsandyq.vercel.app/", "telephone": "+77066820828", "servesCuisine": "Десерты", "address": {"@type": "PostalAddress", "streetAddress": "ул. Е 669, д. 13, НП 2", "addressLocality": "Астана", "addressCountry": "KZ"}, "areaServed": "Астана", "sameAs": ["https://instagram.com/balsandyq_astana"]}</script>\n'
+ '<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Bakery", "name": "BAL SANDYQ", "alternateName": "BAL SANDYQ — кондитерлік шеберхана", "url": "https://balsandyq.vercel.app/", "telephone": "+77081720906", "servesCuisine": "Десерты", "address": {"@type": "PostalAddress", "streetAddress": "ул. Е 669, д. 13, НП 2", "addressLocality": "Астана", "addressCountry": "KZ"}, "areaServed": "Астана", "sameAs": ["https://instagram.com/balsandyq_astana"]}</script>\n'
  '<meta property="og:title" content="BAL SANDYQ — кондитерлік шеберхана">\n'
  '<meta property="og:description" content="Десерты и сэты с доставкой по Астане">\n'
  '<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n'
