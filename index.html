@@ -66,7 +66,7 @@ h2{font:800 clamp(26px,6vw,40px)/1 var(--f-display);margin:0;letter-spacing:-.01
 .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .card:hover .ph img{transform:scale(1.04)}
 .c-name{font:700 16px/1.25 var(--f-body);margin:0}
-.c-line{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.c-line{display:flex;flex-direction:column;gap:4px}
 .c-desc{color:var(--muted);font-size:13.5px;margin:0}
 .c-price{font:500 15px/1 var(--f-display);color:var(--orange);white-space:nowrap;font-variant-numeric:tabular-nums}
 
@@ -104,8 +104,12 @@ h2{font:800 clamp(26px,6vw,40px)/1 var(--f-display);margin:0;letter-spacing:-.01
 @media (min-width:760px){.more{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 40px}}
 .grp{border-top:2px solid var(--fg);padding-top:12px;min-width:0}
 .grp h3{font:500 13px/1 var(--f-display);text-transform:uppercase;letter-spacing:.1em;margin:0 0 10px;color:var(--orange)}
-.grp p{margin:0;font-size:17px;line-height:1.6}
-.grp p span:not(:last-child)::after{content:"  ·  ";color:var(--orange);white-space:pre}
+.grp ul{margin:0;padding:0;list-style:none;font-size:16px;line-height:1.35}
+.grp li{display:flex;align-items:baseline;gap:8px;padding:6px 0}
+.grp li span{min-width:0}
+.grp li::after{content:"";order:1;flex:1;border-bottom:1px dotted color-mix(in srgb,var(--fg) 35%,transparent);transform:translateY(-4px);min-width:12px}
+.grp li b{order:2;font:500 15px/1 var(--f-display);color:var(--orange);white-space:nowrap;font-variant-numeric:tabular-nums}
+.grp li:not(:has(b))::after{display:none}
 
 /* Контакты */
 .contact{background:var(--fg);color:var(--bg)}
@@ -266,25 +270,25 @@ const PHOTOS = {"trub": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBD
 <script>
 /* Витрина: правьте названия, описания, цены. p: null — цену не показываем (только подтверждённые владельцем цены) */
 const SHOW = [
-  {n:"Творожная тарталетка", d:"Свежая клубника, Ø6 см", p:550, img:"tart"},
-  {n:"Трубочки", d:"Творожный крем, сахарная пудра", p:null, img:"trub"},
-  {n:"Профитроли", d:"Заварное тесто, сливочный крем", p:null, img:"prof"},
-  {n:"Крембель", d:"Хрустящий крамбль, заварной крем", p:null, img:"kreb"},
+  {n:"Творожная тарталетка", d:"Свежая клубника, Ø6 см", p:5350, u:"кг", img:"tart"},
+  {n:"Трубочки", d:"Творожный крем, сахарная пудра", p:5500, u:"кг", img:"trub"},
+  {n:"Профитроли", d:"Заварное тесто, сливочный крем", p:6200, u:"кг", img:"prof"},
+  {n:"Крембель", d:"Хрустящий крамбль, заварной крем", p:6200, u:"кг", img:"kreb"},
   {n:"Мини Павлова", d:"Меренга, клубника, фисташка", p:null, img:"pav"},
   {n:"Мини-тарт баноффи", d:"Банан, варёная сгущёнка, крем", p:null, img:"banm"},
   {n:"Творожные розетки", d:"Ягодное желе, кокос", p:null, img:"roz"},
-  {n:"Торт клубника-ваниль", d:"Ванильный бисквит, клубника", p:null, img:"kv"},
-  {n:"Шоколадное печенье", d:"Мягкое, с тёмным шоколадом", p:null, img:"cook"},
+  {n:"Торт клубника-ваниль", d:"Ванильный бисквит, клубника", p:10000, u:"кг", img:"kv"},
+  {n:"Шоколадное печенье", d:"Мягкое, с тёмным шоколадом", p:190, u:"шт", img:"cook"},
   {n:"Мини-тарт «Сникерс»", d:"Шоколадное тесто, карамель, арахис", p:null, img:"snik"},
-  {n:"Тирамису с белым шоколадом", d:"Савоярди, крем, какао", p:null, img:"tira"},
-  {n:"Мусс «Три шоколада»", d:"Тёмный, молочный, белый шоколад", p:null, img:"muss"},
-  {n:"Панна-котта с малиной", d:"Сливочная, малиновый соус", p:null, img:"panna"},
-  {n:"Меренговый рулет", d:"Меренга, крем, клубника", p:null, img:"rmer"},
-  {n:"Фисташковый рулет", d:"Меренга, фисташковый крем, ягоды", p:null, img:"rfis"},
-  {n:"Рогалики со сгущёнкой", d:"Слоёные, варёная сгущёнка", p:null, img:"rog"},
-  {n:"Медовый торт", d:"Медовые коржи, нежный крем", p:null, img:"med"},
-  {n:"Торт «Милка»", d:"Шоколадный бисквит, ганаш, голубика", p:null, img:"milka"},
-  {n:"Орешки со сгущёнкой", d:"Песочное тесто, варёная сгущёнка", p:null, img:"oreh"},
+  {n:"Тирамису с белым шоколадом", d:"Савоярди, крем, какао", p:680, u:"шт", img:"tira"},
+  {n:"Мусс «Три шоколада»", d:"Тёмный, молочный, белый шоколад", p:680, u:"шт", img:"muss"},
+  {n:"Панна-котта с малиной", d:"Сливочная, малиновый соус", p:680, u:"шт", img:"panna"},
+  {n:"Меренговый рулет", d:"Меренга, крем, клубника", p:7500, u:"шт", img:"rmer"},
+  {n:"Фисташковый рулет", d:"Меренга, фисташковый крем, ягоды", p:9700, u:"шт", img:"rfis"},
+  {n:"Рогалики со сгущёнкой", d:"Слоёные, варёная сгущёнка", p:5500, u:"кг", img:"rog"},
+  {n:"Медовый торт", d:"Медовые коржи, нежный крем", p:7000, u:"кг", img:"med"},
+  {n:"Торт «Милка»", d:"Шоколадный бисквит, ганаш, голубика", p:10000, u:"кг", img:"milka"},
+  {n:"Орешки со сгущёнкой", d:"Песочное тесто, варёная сгущёнка", p:250, u:"шт", img:"oreh"},
   {n:"Мини-чизкейк «Манго-маракуйя»", d:"Сливочный сыр, манго, маракуйя", p:null, img:"mango"}
 ];
 const SETS = [
@@ -293,13 +297,14 @@ const SETS = [
   {ppl:"15–20", note:"человек", price:43990, img:"set15", items:[["Трубочки","1 кг","trub"],["Крембель","1 кг","kreb"],["Профитроли","1 кг","prof"],["Мини Павлова","12 шт","pav"],["Розетки","1 кг","roz"],["Баноффи","12 шт","banm"],["Творожный тарт","12 шт","tart"]]}
 ];
 const MORE = [
-  ["Торты", ["«Карамельная девочка»","Шоколадно-банановый"]],
-  ["Чизкейки", ["«Тары» с обжаренным тары","Сан-Себастьян","«Классика» порционный"]],
-  ["Пироги и тарты", ["Баноффи пай","Банановый пирог","Пирог «Сникерс»","Куриный пирог","Тарт со смородиной","Творожник с ягодами","Сметанник с персиками","Шоколадный пирог с ганашем"]],
-  ["Выпечка", ["Вафли","Сдобные булочки с молочной заливкой","Лимонный кекс","Самса с мясом"]]
+  ["Торты", [["«Карамельная девочка»",7500,"кг"],["Шоколадно-банановый",8000,"кг"],["Фисташка-малина",11000,"кг"]]],
+  ["Чизкейки", [["«Тары» с клубничным соусом",12490,"шт"],["Сан-Себастьян",10000,"шт"],["«Классика» порционный"]]],
+  ["Пироги и тарты на заказ", [["Пирог «Баноффи» Ø26 см",5300,"шт"],["Банановый пирог 20×30 см",9450,"шт"],["Пирог «Сникерс» Ø26 см",7500,"шт"],["Тарт со смородиной Ø24 см",4000,"шт"],["Творожник с ягодами 20×30 см",13000,"шт"],["Сметанник с персиками",4500,"шт"],["Лимонный кекс Ø26 см",7500,"шт"],["Шоколадный пирог с ганашем 20×30 см",15000,"шт"]]],
+  ["Сытная выпечка", [["Пирог куриный",8000,"шт"],["Пирог мясной",9000,"шт"],["Киш с сёмгой и брокколи",8500,"шт"],["Самса с мясом",5500,"кг"],["Самса с курицей",4500,"кг"]]],
+  ["Весовая выпечка", [["Вафли",2500,"кг"],["Сдобные булочки с молочной заливкой",2700,"кг"]]]
 ];
 
-const fmt = n => n.toLocaleString("ru-RU").replace(/ /g," ") + " ₸";
+const fmt = (n,u) => n.toLocaleString("ru-RU").replace(/\s/g,"\u00a0") + "\u00a0₸" + (u ? "/" + u : "");
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 document.getElementById("heroImg").src = PHOTOS.table;
@@ -323,7 +328,7 @@ document.getElementById("feed").innerHTML = ["pav","trub","tart","prof","banm","
 document.getElementById("grid").innerHTML = SHOW.map((i,k) => `
   <button class="card" type="button" data-k="${k}" aria-label="${esc(i.n)} — увеличить фото">
     <div class="ph"><img src="${PHOTOS[i.img]}" alt="${esc(i.n)}" loading="lazy"></div>
-    <div class="c-line"><h3 class="c-name">${esc(i.n)}</h3>${i.p?`<span class="c-price">${fmt(i.p)}</span>`:""}</div>
+    <div class="c-line"><h3 class="c-name">${esc(i.n)}</h3>${i.p?`<span class="c-price">${fmt(i.p,i.u)}</span>`:""}</div>
     <p class="c-desc">${esc(i.d)}</p>
   </button>`).join("");
 
@@ -335,7 +340,7 @@ document.getElementById("setsBox").innerHTML = SETS.map(s => `
   </article>`).join("");
 
 document.getElementById("moreBox").innerHTML = MORE.map(([h,xs]) => `
-  <div class="grp"><h3>${esc(h)}</h3><p>${xs.map(x=>`<span>${esc(x)}</span>`).join("")}</p></div>`).join("");
+  <div class="grp"><h3>${esc(h)}</h3><ul>${xs.map(([n,p,u])=>`<li><span>${esc(n)}</span>${p?`<b>${fmt(p,u)}</b>`:""}</li>`).join("")}</ul></div>`).join("");
 
 const zoom = document.getElementById("zoom");
 document.getElementById("grid").addEventListener("click", e => {
@@ -343,7 +348,7 @@ document.getElementById("grid").addEventListener("click", e => {
   const i = SHOW[+c.dataset.k];
   document.getElementById("zoomImg").src = PHOTOS[i.img];
   document.getElementById("zoomImg").alt = i.n;
-  document.getElementById("zoomName").textContent = i.n + (i.p ? " — " + fmt(i.p) : "");
+  document.getElementById("zoomName").textContent = i.n + (i.p ? " — " + fmt(i.p,i.u) : "");
   document.getElementById("zoomDesc").textContent = i.d;
   try { zoom.showModal(); } catch { zoom.setAttribute("open",""); }
 });

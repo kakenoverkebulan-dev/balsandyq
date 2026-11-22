@@ -52,7 +52,7 @@ h2{font:800 clamp(26px,6vw,40px)/1 var(--f-display);margin:0;letter-spacing:-.01
 .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .card:hover .ph img{transform:scale(1.04)}
 .c-name{font:700 16px/1.25 var(--f-body);margin:0}
-.c-line{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.c-line{display:flex;flex-direction:column;gap:4px}
 .c-desc{color:var(--muted);font-size:13.5px;margin:0}
 .c-price{font:500 15px/1 var(--f-display);color:var(--orange);white-space:nowrap;font-variant-numeric:tabular-nums}
 
@@ -90,8 +90,12 @@ h2{font:800 clamp(26px,6vw,40px)/1 var(--f-display);margin:0;letter-spacing:-.01
 @media (min-width:760px){.more{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 40px}}
 .grp{border-top:2px solid var(--fg);padding-top:12px;min-width:0}
 .grp h3{font:500 13px/1 var(--f-display);text-transform:uppercase;letter-spacing:.1em;margin:0 0 10px;color:var(--orange)}
-.grp p{margin:0;font-size:17px;line-height:1.6}
-.grp p span:not(:last-child)::after{content:"  ·  ";color:var(--orange);white-space:pre}
+.grp ul{margin:0;padding:0;list-style:none;font-size:16px;line-height:1.35}
+.grp li{display:flex;align-items:baseline;gap:8px;padding:6px 0}
+.grp li span{min-width:0}
+.grp li::after{content:"";order:1;flex:1;border-bottom:1px dotted color-mix(in srgb,var(--fg) 35%,transparent);transform:translateY(-4px);min-width:12px}
+.grp li b{order:2;font:500 15px/1 var(--f-display);color:var(--orange);white-space:nowrap;font-variant-numeric:tabular-nums}
+.grp li:not(:has(b))::after{display:none}
 
 /* Контакты */
 .contact{background:var(--fg);color:var(--bg)}
