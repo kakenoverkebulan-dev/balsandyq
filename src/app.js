@@ -22,6 +22,7 @@ const SHOW = [
   {n:"Мини-чизкейк «Манго-маракуйя»", d:"Сливочный сыр, манго, маракуйя", p:null, img:"mango"}
 ];
 const SETS = [
+  {ppl:"до 6", note:"человек · чайный сэт", price:17990, mix:["banm","snik","tart","rmer"], items:[["Тарт баноффи пай","6 шт","banm"],["Тарт «Сникерс»","6 шт","snik"],["Тарталетка творожная","6 шт","tart"],["Меренговый рулет","1 шт","rmer"]]},
   {ppl:"8–10", note:"человек", price:14990, img:"set8", items:[["Трубочки","10 шт","trub"],["Крембель","20 шт","kreb"],["Профитроли","10 шт","prof"],["Мини Павлова","8 шт","pav"]]},
   {ppl:"10–12", note:"человек · с тортом", price:31490, hot:true, img:"set10", items:[["Торт клубника-ваниль","1 шт","kv"],["Трубочки","500 г","trub"],["Крембель","500 г","kreb"],["Профитроли","500 г","prof"],["Мини Павлова","6 шт","pav"],["Розетки","500 г","roz"],["Баноффи","6 шт","banm"],["Творожный тарт","6 шт","tart"]]},
   {ppl:"15–20", note:"человек", price:43990, img:"set15", items:[["Трубочки","1 кг","trub"],["Крембель","1 кг","kreb"],["Профитроли","1 кг","prof"],["Мини Павлова","12 шт","pav"],["Розетки","1 кг","roz"],["Баноффи","12 шт","banm"],["Творожный тарт","12 шт","tart"]]}
@@ -50,7 +51,7 @@ document.getElementById("heroImg").src = PHOTOS.table;
     cap.style.opacity = 0; setTimeout(() => { cap.textContent = seq[i][1]; cap.style.opacity = 1; }, reduce ? 0 : 250);
   }, 3200);
 })();
-const T = ["Свежее каждый день","Қош келдіңіз","Доставка по Астане","Корпоративные заказы","Сэты на 8–20 человек","Фирменная коробка"];
+const T = ["Свежее каждый день","Қош келдіңіз","Доставка по Астане","Корпоративные заказы","Сэты на 6–20 человек","Фирменная коробка"];
 const line = T.map(t=>`<span>${t}</span><b>✦</b>`).join("");
 document.getElementById("ticker").innerHTML = line + line;
 document.getElementById("feed").innerHTML = ["pav","trub","tart","prof","banm","roz"].map(k=>`<img src="${PHOTOS[k]}" alt="" loading="lazy">`).join("");
@@ -64,7 +65,7 @@ document.getElementById("grid").innerHTML = SHOW.map((i,k) => `
 
 document.getElementById("setsBox").innerHTML = SETS.map(s => `
   <article class="set${s.hot?" hot":""}">
-    <button class="set-ph" type="button" data-set="${s.img}" data-cap="Сэт на ${s.ppl} ${esc(s.note)}${s.price?" — "+fmt(s.price):""}" aria-label="Сэт на ${s.ppl} человек — увеличить фото"><img src="${PHOTOS[s.img]}" alt="Десерты сэта на ${s.ppl} человек на столе" loading="lazy">${s.hot?`<span class="badge">Самый полный</span>`:""}</button>
+    ${s.mix?`<div class="set-ph set-mix">${s.mix.map(k=>`<img src="${PHOTOS[k]}" alt="" loading="lazy">`).join("")}</div>`:`<button class="set-ph" type="button" data-set="${s.img}" data-cap="Сэт на ${s.ppl} ${esc(s.note)}${s.price?" — "+fmt(s.price):""}" aria-label="Сэт на ${s.ppl} человек — увеличить фото"><img src="${PHOTOS[s.img]}" alt="Десерты сэта на ${s.ppl} человек на столе" loading="lazy">${s.hot?`<span class="badge">Самый полный</span>`:""}</button>`}
     <p class="ppl">${s.ppl}<small>${esc(s.note)}</small></p>${s.price?`<p class="s-price">${fmt(s.price)}</p>`:""}
     <ul>${s.items.map(([n,q])=>`<li>${esc(n)} <small>${esc(q)}</small></li>`).join("")}</ul>
   </article>`).join("");
